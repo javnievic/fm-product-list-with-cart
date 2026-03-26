@@ -21,7 +21,7 @@
 
 main {
     margin: 0 auto;
-    padding: 0 7%;
+    padding: 0 7.8%;
 }
 
 img {
@@ -29,6 +29,21 @@ img {
     display: block;
 }
 
+/* Background image overlay for desktop */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../design/mobile-design-selected.jpg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+  opacity: 0; /* Change the opacity */
+  pointer-events: none;
+}
 
 body {
     background: var(--rose-50);
@@ -37,8 +52,31 @@ body {
 
 h1 {
     color: var(--rose-900);
-    font-size: 2.5rem;
-    border: 1px solid var(--rose-900);
+    font-size: 2.6rem;
+}
+
+h2 {
+    color: var(--red); 
+    font-size: 1.5rem;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--rose-900);
+    opacity: 0.1;
+    width: 100%;
+    margin: 0; 
+}
+button {
+    background-color: transparent;
+    border: none; 
+}
+
+.shop-container {
+    display: flex;
+    flex-direction: column;
+    padding: 7% 0;
+    gap: 2rem; 
 }
 
 
@@ -51,14 +89,14 @@ h1 {
 .desserts-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .dessert-card{
     display: flex;
     flex-direction: column;
-    width: 250px;
-    gap: 24px; 
+    width: 266px;
+    gap: 40px; 
 }
 
 .dessert-image-container img{
@@ -82,15 +120,18 @@ h1 {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    padding: 10px 30px;
+    padding: 12px 44px;
     border-radius: 30px;
-    gap: 8px;
+    gap: 4px;
 
     border: 1px solid var(--red);
     color: var(--rose-900);
     font-weight: 600;
     background: var(--white);
     white-space: nowrap;
+    
+    font-size: 0.9rem;
+    font-weight: 600;
     
     position: absolute;
     bottom: 0;
@@ -99,7 +140,8 @@ h1 {
 }
 
 .add-to-cart-btn img {
-    width: 20px;
+    width: 21px;
+    height: 20px;
 }
 
 
@@ -110,7 +152,7 @@ h1 {
 
 .dessert-title {
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .dessert-description {
@@ -121,6 +163,50 @@ h1 {
     color: var(--red);
     font-weight: 600;
 }
+
+/* Cart container*/
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    padding: 24px;
+    border-radius: 8px;
+    width: 100%;
+    gap: 16px;
+    height: 100%;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cart-item-details {
+    display: flex;
+    gap: 16px;
+}
+
+.cart-item-quantity {
+    color: var(--red);
+    font-weight: 600;
+}
+
+.cart-item-remove-btn {
+    color: var(--red);
+    border-radius: 50%;
+    border: 1px solid var(--red);
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+}
+
 
 
 /* Tablet */
@@ -134,8 +220,15 @@ h1 {
 
 /* Desktop */
 @media (min-width: 1024px) {
+    body::before {
+        background-image: url("../design/active-states.jpg");
+    }
+
     .desserts-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+    .shop-container {
+        flex-direction: row;
     }
 
 
