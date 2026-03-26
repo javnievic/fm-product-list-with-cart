@@ -4,24 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
   <title>Frontend Mentor | Product list with cart</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="stylesheet" href="/css/styles.css"/>
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
 <body>
+  <main>
+    <div class="dessert-list">
+      <h1>Desserts</h1>
+      <div class="desserts-grid"> 
+        <div class="dessert-card">
+          <div class="dessert-image-container">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="/assets/images/image-waffle-desktop.jpg">
+              <source media="(min-width: 768px)" srcset="/assets/images/image-waffle-tablet.jpg">
+              <img src="/assets/images/image-waffle-mobile.jpg" alt="Waffle image">
+            </picture>
+            <button class="add-to-cart-btn"> 
+              <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart">
+              Add to Cart
+            </button>
+          </div>
+
+          <div class="dessert-info">
+            <h3 class="dessert-title">Waffle</h3>
+            <p class="dessert-description">Waffle with Berries</p>
+            <p class="dessert-price">$6.50</p>
+          </div>
+        </div> 
+
+
+              <div class="dessert-card">
+          <div class="dessert-image-container">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="/assets/images/image-waffle-desktop.jpg">
+              <source media="(min-width: 768px)" srcset="/assets/images/image-waffle-tablet.jpg">
+              <img src="/assets/images/image-waffle-mobile.jpg" alt="Waffle image">
+            </picture>
+            <button class="add-to-cart-btn"> 
+              <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart">
+              Add to Cart
+            </button>
+          </div>
+
+          <div class="dessert-info">
+            <h3 class="dessert-title">Waffle</h3>
+            <p class="dessert-description">Waffle with Berries</p>
+            <p class="dessert-price">$6.50</p>
+          </div>
+        </div> 
+              <div class="dessert-card">
+          <div class="dessert-image-container">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="/assets/images/image-waffle-desktop.jpg">
+              <source media="(min-width: 768px)" srcset="/assets/images/image-waffle-tablet.jpg">
+              <img src="/assets/images/image-waffle-mobile.jpg" alt="Waffle image">
+            </picture>
+            <button class="add-to-cart-btn"> 
+              <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart">
+              Add to Cart
+            </button>
+          </div>
+
+          <div class="dessert-info">
+            <h3 class="dessert-title">Waffle</h3>
+            <p class="dessert-description">Waffle with Berries</p>
+            <p class="dessert-price">$6.50</p>
+          </div>
+        </div> 
+        
+
+      </div>
+    </div>
+
+  </main>
 
   Desserts
 
-  Waffle with Berries
-  Waffle
-  6.50
-  Add to Cart
+
 
   Vanilla Bean Crème Brûlée
   Crème Brûlée
@@ -68,7 +137,7 @@
 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Javnievic</a>.
   </div>
 </body>
 </html>

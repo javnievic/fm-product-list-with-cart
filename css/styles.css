@@ -1,0 +1,142 @@
+:root {
+  --red: hsl(14, 86%, 42%);
+  --green: hsl(159, 69%, 38%);
+  --white: hsl(0, 0%, 100%); 
+
+  --rose-50: hsl(20, 50%, 98%);
+  --rose-100: hsl(13, 31%, 94%);
+  --rose-300: hsl(14, 25%, 72%);
+  --rose-400: hsl(7, 20%, 60%);
+  --rose-500: hsl(12, 20%, 44%);
+  --rose-900: hsl(14, 65%, 9%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+    margin: 0 auto;
+    padding: 0 7%;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+body {
+    background: var(--rose-50);
+    font-family: "Red Hat Text", sans-serif;
+}
+
+h1 {
+    color: var(--rose-900);
+    font-size: 2.5rem;
+    border: 1px solid var(--rose-900);
+}
+
+
+/* Dessert grid styles*/
+.dessert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.desserts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.dessert-card{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    gap: 24px; 
+}
+
+.dessert-image-container img{
+    border-radius: 8px;
+    width: 100%;
+}
+
+.dessert-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.dessert-image-container{
+    position: relative;
+    width: 100%;
+}
+
+.add-to-cart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px 30px;
+    border-radius: 30px;
+    gap: 8px;
+
+    border: 1px solid var(--red);
+    color: var(--rose-900);
+    font-weight: 600;
+    background: var(--white);
+    white-space: nowrap;
+    
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.add-to-cart-btn img {
+    width: 20px;
+}
+
+
+.dessert-title,
+.dessert-description {
+    color: var(--rose-900);
+}
+
+.dessert-title {
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+.dessert-description {
+    font-weight: 600;
+}
+
+.dessert-price {
+    color: var(--red);
+    font-weight: 600;
+}
+
+
+/* Tablet */
+@media (min-width: 768px) {
+    .desserts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .desserts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+}
