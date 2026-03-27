@@ -70,6 +70,7 @@ hr {
 button {
     background-color: transparent;
     border: none; 
+    font-family: "Red Hat Text", sans-serif;
 }
 
 .shop-container {
@@ -95,7 +96,7 @@ button {
 .dessert-card{
     display: flex;
     flex-direction: column;
-    width: 266px;
+    width: 264px;
     gap: 40px; 
 }
 
@@ -139,6 +140,12 @@ button {
     transform: translate(-50%, 50%);
 }
 
+.add-to-cart-btn:hover {
+    color: var(--red);
+    border: 1.6px solid var(--red);
+}
+
+
 .add-to-cart-btn img {
     width: 21px;
     height: 20px;
@@ -165,7 +172,7 @@ button {
 }
 
 /* Cart container*/
-.cart-container {
+.cart {
     display: flex;
     flex-direction: column;
     background: var(--white);
@@ -198,13 +205,59 @@ button {
     font-weight: 600;
 }
 
+.cart-item-price {
+    color: var(--rose-500);
+    font-weight: 400;
+}
+
+.cart-item-total {
+    color: var(--rose-500);
+    font-weight: 600;
+}
+
 .cart-item-remove-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--red);
     border-radius: 50%;
     border: 1px solid var(--red);
     cursor: pointer;
     height: 15px;
     width: 15px;
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-total {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.cart-message--carbon-neutral {
+    display: flex;
+    background: var(--rose-50);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    gap: 4px;
+}
+
+.confirm-order-btn {
+    font-size: 1rem;
+    background: var(--red);
+    color: var(--rose-50);
+
+    padding: 16px;
+    border-radius: 32px;
+}
+.confirm-order-btn:hover {
+    background: hsl(14, 86%, 33%);
+    cursor: pointer;
 }
 
 

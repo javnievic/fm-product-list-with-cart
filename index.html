@@ -84,26 +84,64 @@
             </div>
           </div> 
           
-          
+          <div class="dessert-card">
+            <div class="dessert-image-container">
+              <picture>
+                <source media="(min-width: 1024px)" srcset="/assets/images/image-waffle-desktop.jpg">
+                <source media="(min-width: 768px)" srcset="/assets/images/image-waffle-tablet.jpg">
+                <img src="/assets/images/image-waffle-mobile.jpg" alt="Waffle image">
+              </picture>
+              <button class="add-to-cart-btn"> 
+                <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart">
+                Add to Cart
+              </button>
+            </div>
+
+            <div class="dessert-info">
+              <h3 class="dessert-title">Waffle</h3>
+              <p class="dessert-description">Waffle with Berries</p>
+              <p class="dessert-price">$6.50</p>
+            </div>
+          </div>           
 
         </div>
       </div>
 
-      <div class="cart-container">
-        <h2>Your cart (<span id="cart-quantity">3</span>)</h2>
+      <div class="cart">
+        <h2 class="cart-header">
+          Your Cart (<span id="cart-quantity">3</span>)
+        </h2>
 
         <div class="cart-item" data-id="1">
           <div class="cart-item-info">
             <h4 class="cart-item-title"> Classic Tiramisu</h4>
             <div class="cart-item-details">
-              <p class="cart-item-quantity"><span data-key="quantity">1</span>x</p>
-              <p class="cart-item-price"> @ $<span data-key="price">5.50</span></p>
-              <p class="cart-item-total">$<span data-key="total-price">5.50</span></p>
+              <p class="cart-item-quantity">
+                <span data-key="item-quantity">1</span>x
+              </p>
+              <p class="cart-item-price"> 
+                @ $ <span data-key="item-price">5.50</span>
+              </p>
+              <p class="cart-item-total">
+                $ <span data-key="item-total-price">5.50</span>
+              </p>
             </div>
           </div>
           <button class="cart-item-remove-btn">X</button>
         </div>
+
         <hr>
+
+        <div class="cart-summary">
+          <p>Order Total</p> <p class="cart-total">$<span id="cart-total"> 16.50</span></p>
+        </div>
+        <div class="cart-message--carbon-neutral">
+          <img src="/assets/images/icon-carbon-neutral.svg" alt="Carbon neutral">
+          <p>
+            This is a <span style="font-weight: 600;">carbon neutral</span> delivery
+          </p>
+        </div>
+        <button class="confirm-order-btn">Confirm Order</button>
       </div>
     </div>
 
