@@ -219,12 +219,17 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--red);
     border-radius: 50%;
-    border: 1px solid var(--red);
+    border: 2px solid var(--rose-300);
     cursor: pointer;
-    height: 15px;
-    width: 15px;
+    padding: 2px;
+}
+
+.cart-item-remove-btn:hover{
+    border: 2px solid var(--rose-900);
+}
+.cart-item-remove-btn:hover svg path {
+    fill: var(--rose-900); 
 }
 
 .cart-summary {
