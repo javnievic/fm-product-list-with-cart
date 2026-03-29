@@ -116,20 +116,16 @@ button {
     width: 100%;
 }
 
-.add-to-cart-btn {
+.add-to-cart-btn,
+.cart-quantity-selector {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    padding: 12px 44px;
     border-radius: 30px;
     gap: 4px;
-
-    border: 1px solid var(--red);
-    color: var(--rose-900);
-    font-weight: 600;
-    background: var(--white);
-    white-space: nowrap;
+    height: 44px;
+    width: 171px;
+    
     
     font-size: 0.9rem;
     font-weight: 600;
@@ -140,16 +136,58 @@ button {
     transform: translate(-50%, 50%);
 }
 
+.add-to-cart-btn {
+    cursor: pointer;
+    padding: 12px 44px;
+
+    border: 1px solid var(--red);
+    color: var(--rose-900);
+    font-weight: 600;
+    background: var(--white);
+    white-space: nowrap;
+}
+
+
 .add-to-cart-btn:hover {
     color: var(--red);
     border: 1.6px solid var(--red);
 }
 
-
 .add-to-cart-btn img {
     width: 21px;
     height: 20px;
 }
+
+
+.cart-quantity-selector {
+    padding: 12px 12px;
+    justify-content: space-between;
+    color: var(--white);
+    font-weight: 600;
+    background: var(--red);
+}
+
+.quantity-increase-btn,
+.quantity-decrease-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    cursor: pointer;
+    padding: 2px; 
+}
+
+.quantity-increase-btn:hover,
+.quantity-decrease-btn:hover {
+    background: var(--white);
+}
+
+.quantity-increase-btn:hover svg path,
+.quantity-decrease-btn:hover svg path {
+    fill: var(--red);
+}
+
 
 
 .dessert-category,
@@ -265,6 +303,10 @@ button {
     cursor: pointer;
 }
 
+
+.hidden {
+    display: none;
+}
 
 
 /* Tablet */
