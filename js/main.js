@@ -1,7 +1,8 @@
 // Page state
 let dessertsData = []; 
-let cart = {};
-let cartTotal = 0;
+let cart = new Map();
+let cartTotalQuantity = 0;
+let cartTotalPrice = 0;
 
 // Page elements
 const dessertsGridEl = document.querySelector('.desserts-grid'); 
@@ -54,7 +55,7 @@ function renderDesserts(desserts) {
             <div class="dessert-info">
                 <h3 class="dessert-category">${dessert.category}</h3>
                 <p class="dessert-name">${dessert.name}</p>
-                <p class="dessert-price">$${dessert.price}</p>
+                <p class="dessert-price">$${dessert.price.toFixed(2)}</p>
             </div>
         </div> 
         `;
@@ -80,8 +81,9 @@ dessertsGridEl.addEventListener('click', (e) => {
 
     
     // Cart item
-    const cartQuantityEl = document.querySelector('#cart-quantity');
     const cartItemsEl = document.querySelector('.cart-items'); 
+
+    const emptyCartMessageEl = document.querySelector('.empty-cart-message');
 
     // Clicking bools
     const clickedAddToCart = e.target.closest('.add-to-cart-btn'); 
@@ -95,20 +97,78 @@ dessertsGridEl.addEventListener('click', (e) => {
 
         addToCartBtnEl.classList.toggle('hidden'); 
         quantitySelector.classList.toggle('hidden'); 
+    }
+    // Increase
+    if (clickedIncreaseBtn) {
+        cart.get(selectedDessertId).quantity++; 
+    }
+    // Decrease
+    if (clickedDecreaseBtn) {
+        cart.get(selectedDessertId).quantity--;
+        if (cart.get(selectedDessertId).quantity === 0) {
+            removeCartDessert(selectedDessertId); 
+        }
+    }
+    renderCart(); 
+    quantitySelectorValue.textContent = cart.get(selectedDessertId).quantity;
+})
 
-        cartItemsEl.innerHTML += `
-            <div class="cart-item" data-id="${selectedDessertId}">
+
+function addToCart(id) {
+    cart.set(id, {quantity: 1, price: dessertsData[id].price}); 
+}
+
+function removeCartDessert(id) {
+    const cartItem = document.querySelector(`.cart-item[data-id="${id}"]`); 
+    const addToCartBtnEl = document.querySelector(`.dessert-card[data-id="${id}"]`).querySelector('.add-to-cart-btn'); 
+    const quantitySelector = document.querySelector(`.dessert-card[data-id="${id}"]`).querySelector('.cart-quantity-selector'); 
+
+    addToCartBtnEl.classList.remove('hidden'); 
+    quantitySelector.classList.add('hidden');
+
+    cart.delete(id);
+    cartItem.remove();
+}
+
+
+function renderCart() {
+    const cartEl = document.querySelector('.cart');
+    let html = "";
+    const emptyCartMessageEl = cartEl.querySelector('.empty-cart-message');
+    const cartItemsEl = document.querySelector('.cart-items'); 
+    const cartContentEl = document.querySelector('.cart-content');
+    
+    const cartQuantityEl = document.querySelector('#cart-quantity');
+    const cartTotalPriceEl = document.querySelector('#cart-total');
+
+    cartTotalQuantity = 0; 
+    cartTotalPrice = 0; 
+    if (cart.size === 0) {
+        emptyCartMessageEl.classList.remove('hidden'); 
+        cartContentEl.classList.add('hidden');
+    } else {
+        cartContentEl.classList.remove('hidden');
+        emptyCartMessageEl.classList.add('hidden'); 
+        cart.forEach((cartItem, id) => {
+            const dessert = dessertsData[id];
+
+            itemTotalPrice = dessert.price * cartItem.quantity; 
+
+            cartTotalQuantity += cartItem.quantity;
+            cartTotalPrice += itemTotalPrice;
+            html += `
+            <div class="cart-item" data-id="${id}">
             <div class="cart-item-info">
-                <h4 class="cart-item-title"> ${selectedDessert.name}</h4>
+                <h4 class="cart-item-title"> ${dessert.name}</h4>
                 <div class="cart-item-details">
                 <p class="cart-item-quantity">
-                    <span class= "item-quantity">1</span>x
+                    <span class= "item-quantity">${cartItem.quantity}</span>x
                 </p>
                 <p class="cart-item-price"> 
-                    @ $ <span class="item-price">${selectedDessert.price.toFixed(2)}</span>
+                    @ $ <span class="item-price">${dessert.price.toFixed(2)}</span>
                 </p>
                 <p class="cart-item-total">
-                    $ <span class="item-total-price">${selectedDessert.price.toFixed(2)}</span>
+                    $ <span class="item-total-price">${itemTotalPrice.toFixed(2)}</span>
                 </p>
                 </div>
             </div>
@@ -121,52 +181,11 @@ dessertsGridEl.addEventListener('click', (e) => {
             </div>
             <hr>
         `;
+        })
     }
-    // Increase
-    if (clickedIncreaseBtn) {
-        cart[selectedDessertId].quantity++; cartTotal++; 
-    }
-    // Decrease
-    if (clickedDecreaseBtn) {
-        cart[selectedDessertId].quantity--; cartTotal--; 
-        if (cart[selectedDessertId].quantity === 0) {
-            removeCartDessert(selectedDessertId); 
-            return; 
-        }      
-    }
-    quantitySelectorValue.textContent = cart[selectedDessertId].quantity;
-    updateCartItemUI(selectedDessertId); 
-    cartQuantityEl.textContent = cartTotal; 
-})
-
-
-function addToCart(id) {
-    cart[id] = { quantity: 1, price: dessertsData[id].price}; 
-    cartTotal++;
-}
-
-function updateCartItemUI(id) {
-    const cartItem =  document.querySelector(`.cart-item[data-id = "${id}"]`);
-    const totalPrice = cartItem.querySelector(".item-total-price");
-    const quantity = cartItem.querySelector(".item-quantity");
-    
-    totalPrice.textContent = (cart[id].quantity * cart[id].price).toFixed(2);
-    quantity.textContent = cart[id].quantity; 
-
-}
-
-function removeCartDessert(id) {
-    const cartItem = document.querySelector(`.cart-item[data-id="${id}"]`); 
-    const addToCartBtnEl = document.querySelector(`.dessert-card[data-id="${id}"]`).querySelector('.add-to-cart-btn'); 
-    const quantitySelector = document.querySelector(`.dessert-card[data-id="${id}"]`).querySelector('.cart-quantity-selector'); 
-
-    cartTotal = cartTotal - cart[id].quantity;
-
-    addToCartBtnEl.classList.remove('hidden'); 
-    quantitySelector.classList.add('hidden');
-
-    delete cart[id];
-    cartItem.remove();
+    cartItemsEl.innerHTML = html;
+    cartQuantityEl.textContent = cartTotalQuantity;  
+    cartTotalPriceEl.textContent = cartTotalPrice.toFixed(2); 
 }
 
 
@@ -183,6 +202,7 @@ cartEl.addEventListener('click', (e) => {
     dessert = dessertsData[dessertId]; 
 
     removeCartDessert(dessertId)
+    renderCart()
 
     // TODO
     // cartQuantityEl.textContent = cartTotal; 
