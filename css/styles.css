@@ -116,6 +116,11 @@ button {
     width: 100%;
 }
 
+.dessert-image-container.selected{
+    box-shadow: 0 0 0 2px var(--red);
+    border-radius: 8px;
+}
+
 .add-to-cart-btn,
 .cart-quantity-selector {
     display: flex;
@@ -172,10 +177,13 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+       
+    width: 18px;
+    height: 18px;
+
     border-radius: 50%;
     border: 2px solid var(--white);
     cursor: pointer;
-    padding: 2px; 
 }
 
 .quantity-increase-btn:hover,

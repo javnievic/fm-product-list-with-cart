@@ -64,6 +64,7 @@ function renderDesserts(desserts) {
     dessertsGridEl.innerHTML = dessertsHtml; 
 }
 
+
 // Event delegation for dessert card buttons
 dessertsGridEl.addEventListener('click', (e) => {
 
@@ -74,7 +75,7 @@ dessertsGridEl.addEventListener('click', (e) => {
     const quantitySelector = dessertCardEl.querySelector('.cart-quantity-selector'); 
     const quantitySelectorValue = quantitySelector.querySelector('.quantity-value');
     const addToCartBtnEl = dessertCardEl.querySelector('.add-to-cart-btn'); 
-    
+    const dessertImageContainerEl = dessertCardEl.querySelector('.dessert-image-container');
     
     const selectedDessertId = dessertCardEl.dataset.id;
     const selectedDessert = dessertsData[selectedDessertId]; 
@@ -96,7 +97,9 @@ dessertsGridEl.addEventListener('click', (e) => {
         addToCart(selectedDessertId); 
 
         addToCartBtnEl.classList.toggle('hidden'); 
+
         quantitySelector.classList.toggle('hidden'); 
+        dessertImageContainerEl.classList.add('selected');
     }
     // Increase
     if (clickedIncreaseBtn) {
@@ -122,9 +125,11 @@ function removeCartDessert(id) {
     const cartItem = document.querySelector(`.cart-item[data-id="${id}"]`); 
     const addToCartBtnEl = document.querySelector(`.dessert-card[data-id="${id}"]`).querySelector('.add-to-cart-btn'); 
     const quantitySelector = document.querySelector(`.dessert-card[data-id="${id}"]`).querySelector('.cart-quantity-selector'); 
+    const dessertImageContainerEl = document.querySelector(`.dessert-card[data-id="${id}"]`).querySelector('.dessert-image-container');
 
     addToCartBtnEl.classList.remove('hidden'); 
     quantitySelector.classList.add('hidden');
+    dessertImageContainerEl.classList.remove('selected');
 
     cart.delete(id);
     cartItem.remove();
@@ -207,6 +212,7 @@ cartEl.addEventListener('click', (e) => {
     // TODO
     // cartQuantityEl.textContent = cartTotal; 
 })
+
 
 
 
