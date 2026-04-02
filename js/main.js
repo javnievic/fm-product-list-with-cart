@@ -64,6 +64,10 @@ function renderDesserts(desserts) {
     dessertsGridEl.innerHTML = dessertsHtml; 
 }
 
+const cartItemsEl = document.querySelector('.cart-items'); 
+
+const emptyCartMessageEl = document.querySelector('.empty-cart-message');
+
 
 // Event delegation for dessert card buttons
 dessertsGridEl.addEventListener('click', (e) => {
@@ -78,13 +82,7 @@ dessertsGridEl.addEventListener('click', (e) => {
     const dessertImageContainerEl = dessertCardEl.querySelector('.dessert-image-container');
     
     const selectedDessertId = dessertCardEl.dataset.id;
-    const selectedDessert = dessertsData[selectedDessertId]; 
 
-    
-    // Cart item
-    const cartItemsEl = document.querySelector('.cart-items'); 
-
-    const emptyCartMessageEl = document.querySelector('.empty-cart-message');
 
     // Clicking bools
     const clickedAddToCart = e.target.closest('.add-to-cart-btn'); 
@@ -157,32 +155,31 @@ function renderCart() {
         cart.forEach((cartItem, id) => {
             const dessert = dessertsData[id];
 
-            itemTotalPrice = dessert.price * cartItem.quantity; 
+            const itemTotalPrice = dessert.price * cartItem.quantity; 
 
             cartTotalQuantity += cartItem.quantity;
             cartTotalPrice += itemTotalPrice;
             html += `
             <div class="cart-item" data-id="${id}">
-            <div class="cart-item-info">
-                <h4 class="cart-item-title"> ${dessert.name}</h4>
-                <div class="cart-item-details">
-                <p class="cart-item-quantity">
-                    <span class= "item-quantity">${cartItem.quantity}</span>x
-                </p>
-                <p class="cart-item-price"> 
-                    @ $ <span class="item-price">${dessert.price.toFixed(2)}</span>
-                </p>
-                <p class="cart-item-total">
-                    $ <span class="item-total-price">${itemTotalPrice.toFixed(2)}</span>
-                </p>
+                <div class="cart-item-info">
+                    <h4 class="cart-item-title"> ${dessert.name}</h4>
+                    <div class="cart-item-details">
+                    <p class="cart-item-quantity">
+                        <span class= "item-quantity">${cartItem.quantity}</span>x
+                    </p>
+                    <p class="cart-item-price"> 
+                        @ $ <span class="item-price">${dessert.price.toFixed(2)}</span>
+                    </p>
+                    <p class="cart-item-total">
+                        $ <span class="item-total-price">${itemTotalPrice.toFixed(2)}</span>
+                    </p>
+                    </div>
                 </div>
-            </div>
-            <button class="cart-item-remove-btn" aria-label="Remove item">
-                <svg width="10" height="10" fill="none" viewBox="0 0 10 10">
-                <path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
-                </svg>
-
-            </button>
+                <button class="cart-item-remove-btn" aria-label="Remove item">
+                    <svg width="10" height="10" fill="none" viewBox="0 0 10 10">
+                    <path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
+                    </svg>
+                </button>
             </div>
             <hr>
         `;
@@ -215,4 +212,72 @@ cartEl.addEventListener('click', (e) => {
 
 
 
+// Confirm order event
+const confirmOrderBtnEl = document.querySelector('.confirm-order-btn'); 
 
+confirmOrderBtnEl.addEventListener('click', () => {
+    const modalOverlayEl = document.querySelector('.modal-overlay');
+
+    modalOverlayEl.classList.remove('hidden');
+    renderConfirmationSummary(); 
+})
+
+function renderConfirmationSummary() {
+    html = "";
+    const orderSummaryEl = document.querySelector('.order-summary');
+
+    cart.forEach( (cartItem, id) => {
+        const dessert = dessertsData[id]; 
+        const itemTotalPrice = dessert.price * cartItem.quantity; 
+
+        html += `          
+        <div class="cart-item order-item">
+            <div class="order-item-left">
+              <img src="${dessert.image.thumbnail}" alt="Tiramisu image thumnail">
+                <div class="cart-item-info">
+                <h4 class="cart-item-title"> ${dessert.name}</h4>
+                <div class="cart-item-details">
+                <p class="cart-item-quantity">
+                    <span class= "item-quantity">${cartItem.quantity}</span>x
+                </p>
+                <p class="cart-item-price"> 
+                    @ $ <span class="item-price">${dessert.price.toFixed(2)} </span>
+                </p>
+                </div>
+              </div>
+            </div>
+            <p class="cart-item-total">
+                $ <span class="item-total-price">${itemTotalPrice.toFixed(2)}</span>
+            </p>
+          </div>
+          <hr>
+          `
+    })
+    html += `          
+    <div class="cart-summary">
+        <p>Order Total</p> <p class="cart-total">$<span id="cart-total">${cartTotalPrice}</span></p>
+    </div>`
+    orderSummaryEl.innerHTML = html; 
+}
+
+
+// Start new order event
+const startNewOrderBtnEl = document.querySelector('.start-new-order-btn');
+
+startNewOrderBtnEl.addEventListener('click', () => {
+    resetPageUI()
+})
+
+function resetPageUI() {
+    cart.clear();
+    renderCart();
+    renderConfirmationSummary();
+
+    const emptyCartMessageEl = cartEl.querySelector('.empty-cart-message');
+    const cartContentEl = document.querySelector('.cart-content');
+    const modalOverlayEl = document.querySelector('.modal-overlay');
+
+    emptyCartMessageEl.classList.remove('hidden'); 
+    cartContentEl.classList.add('hidden');
+    modalOverlayEl.classList.add('hidden');
+}

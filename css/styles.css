@@ -292,7 +292,9 @@ button {
     border-radius: 50%;
     border: 2px solid var(--rose-300);
     cursor: pointer;
-    padding: 2px;
+    
+    width: 18px;
+    height: 18px;
 }
 
 .cart-item-remove-btn:hover{
@@ -335,6 +337,54 @@ button {
     cursor: pointer;
 }
 
+/* Modal container */
+.modal-overlay {
+    position: fixed;
+    inset: 0; 
+    background: hsla(0, 0%, 0%, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmation-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px;
+    width: 622px;
+}
+
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    gap:16px;
+
+    background: var(--rose-100);
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.order-item-left {
+    display: flex;
+    gap: 16px;
+}
+
+.order-item img {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+}
+
+.order-item .cart-item-total {
+    color: var(--rose-900);
+}
+
+
 
 .hidden {
     display: none;
@@ -353,7 +403,7 @@ button {
 /* Desktop */
 @media (min-width: 1024px) {
     body::before {
-        background-image: url("../design/active-states.jpg");
+        background-image: url("../design/desktop-design-order-confirmation.jpg");
     }
 
     .desserts-grid {
