@@ -90,13 +90,13 @@ button {
 .desserts-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem 1.5rem;
 }
 
-.dessert-card{
+.dessert-card {
     display: flex;
     flex-direction: column;
-    width: 264px;
+    width: 100%;
     gap: 40px; 
 }
 
@@ -109,6 +109,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 6px;
 }
 
 .dessert-image-container{
@@ -204,8 +205,9 @@ button {
 }
 
 .dessert-category {
+    color: var(--rose-500);
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .dessert-name {
@@ -222,23 +224,23 @@ button {
     display: flex;
     flex-direction: column;
     background: var(--white);
-    padding: 24px;
+    padding: 28px;
     border-radius: 8px;
     width: 100%;
-    gap: 24px;
+    gap: 28px;
     height: 100%;
 }
 
 .cart-items {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 19px;
 }
 
 .cart-content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 30px;
     height: 100%;
 
 }
@@ -263,6 +265,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    font-size: 0.9rem;
 }
 
 .cart-item-details {
@@ -396,21 +399,25 @@ button {
     .desserts-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
+}
+@media (min-width: 1200px) {
+    .shop-container {
+        flex-direction: row;
+    }
 }
 
 
 /* Desktop */
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
     body::before {
-        background-image: url("../design/desktop-design-order-confirmation.jpg");
+        background-image: url("../design/desktop-design-selected.jpg");
     }
 
     .desserts-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    .shop-container {
-        flex-direction: row;
+    .dessert-card{
+        width: 264px;
     }
 
 

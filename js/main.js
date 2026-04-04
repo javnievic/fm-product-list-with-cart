@@ -27,7 +27,7 @@ function renderDesserts(desserts) {
         <div class="dessert-card" data-id=${dessertId}>
             <div class="dessert-image-container">
                 <picture>
-                    <source media="(min-width: 1024px)" srcset=${dessert.image.desktop}>
+                    <source media="(min-width: 1200px)" srcset=${dessert.image.desktop}>
                     <source media="(min-width: 768px)" srcset=${dessert.image.tablet}>
                     <img src=${dessert.image.mobile} alt="${dessert.name} image">
                 </picture>
@@ -273,11 +273,16 @@ function resetPageUI() {
     renderCart();
     renderConfirmationSummary();
 
-    const emptyCartMessageEl = cartEl.querySelector('.empty-cart-message');
-    const cartContentEl = document.querySelector('.cart-content');
     const modalOverlayEl = document.querySelector('.modal-overlay');
 
-    emptyCartMessageEl.classList.remove('hidden'); 
-    cartContentEl.classList.add('hidden');
     modalOverlayEl.classList.add('hidden');
+    document.querySelectorAll('.dessert-card').forEach(card => {
+        const addBtn = card.querySelector('.add-to-cart-btn');
+        const selector = card.querySelector('.cart-quantity-selector');
+        const imageContainer = card.querySelector('.dessert-image-container');
+
+        addBtn.classList.remove('hidden');
+        selector.classList.add('hidden');
+        imageContainer.classList.remove('selected');
+    });
 }
