@@ -266,6 +266,15 @@ button {
     flex-direction: column;
     gap: 8px;
     font-size: 0.9rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  /* show "..." when it doesn't fit */
+
 }
 
 .cart-item-details {
@@ -347,7 +356,7 @@ button {
     background: hsla(0, 0%, 0%, 0.5);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .confirmation-modal {
@@ -356,9 +365,9 @@ button {
     gap: 32px;
 
     background: var(--white);
-    border-radius: 16px;
+    border-radius: 16px 16px 0 0;
     padding: 40px;
-    width: 622px;
+    width: 100%;
 }
 
 
@@ -400,9 +409,19 @@ button {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
 @media (min-width: 1200px) {
     .shop-container {
         flex-direction: row;
+    }
+    .modal-overlay {
+        align-items: center;
+    }
+
+    .confirmation-modal {
+        border-radius: 16px;
+        width: 622px;
     }
 }
 
