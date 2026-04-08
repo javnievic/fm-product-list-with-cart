@@ -350,6 +350,11 @@ button {
 }
 
 /* Modal container */
+
+body.modal-open {
+    overflow: hidden;
+}
+
 .modal-overlay {
     position: fixed;
     inset: 0; 
@@ -357,6 +362,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    overflow-y: auto;
 }
 
 .confirmation-modal {
@@ -394,6 +400,7 @@ button {
 
 .order-item .cart-item-total {
     color: var(--rose-900);
+    white-space: nowrap;
 }
 
 

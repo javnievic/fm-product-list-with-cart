@@ -159,6 +159,7 @@ DOM.cart.addEventListener('click', (e) => {
 DOM.confirmOrderBtn.addEventListener('click', () => {
 
     DOM.modalOverlay.classList.remove('hidden');
+    document.body.classList.add('modal-open');
     renderConfirmationSummary(); 
 })
 
@@ -186,6 +187,7 @@ function renderConfirmationSummary() {
 
 // Start new order
 DOM.startNewOrderBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth'})
     resetPageUI()
 })
 
@@ -198,6 +200,7 @@ function resetPageUI() {
     renderConfirmationSummary();
 
     DOM.modalOverlay.classList.add('hidden');
+    document.body.classList.remove('modal-open');
 
     document.querySelectorAll('.dessert-card').forEach(card => {
 
